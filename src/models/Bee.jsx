@@ -1,20 +1,16 @@
 import { useAnimations, useGLTF } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 
-import planeScene from '../assets/3d/plane.glb'
+import BeeScene from '../assets/3d/bee.glb'
 import { a } from '@react-spring/three'
 
-const Plane = ({ isRotating, ...props }) => {
+const Bee = ({ isRotating, ...props }) => {
     const ref = useRef()
-    const { scene, animations } = useGLTF(planeScene)
+    const { scene, animations } = useGLTF(BeeScene)
     const { actions } = useAnimations(animations, ref)
 
     useEffect(() => {
-        if (isRotating) {
-            actions['Take 001'].play()
-        } else {
-            actions['Take 001'].stop()
-        }
+        actions['Idle'].play()
     }, [actions, isRotating])
 
     return (
@@ -24,4 +20,4 @@ const Plane = ({ isRotating, ...props }) => {
     )
 }
 
-export default Plane
+export default Bee

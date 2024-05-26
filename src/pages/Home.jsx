@@ -4,7 +4,7 @@ import Loader from '../components/Loader'
 import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
-import Plane from '../models/Plane'
+import Bee from '../models/Bee'
 import HomeInfo from '../components/HomeInfo'
 
 const Home = () => {
@@ -25,15 +25,15 @@ const Home = () => {
         return [screenScale, screenPosition, rotation]
     }
 
-    const adjustPlaneForScreenSize = () => {
+    const adjustBeeForScreenSize = () => {
         let screenScale, screenPosition;
 
         if (window.innerWidth < 768) {
-            screenScale = [1.5, 1.5, 1.5];
+            screenScale = [0.1, 0.1, 0.1];
             screenPosition = [0, -1.5, 0];
         } else {
-            screenScale = [3, 3, 3];
-            screenPosition = [0, -4, -4];
+            screenScale = [0.2, 0.2, 0.2];
+            screenPosition = [0, -2, -4];
         }
 
         return [screenScale, screenPosition];
@@ -41,7 +41,7 @@ const Home = () => {
 
     const [ islandScale, islandPosition, islandRotation ] = adjustIslandForScreenSize()
 
-    const [ planeScale, planePosition ] = adjustPlaneForScreenSize()
+    const [ beeScale, beePosition ] = adjustBeeForScreenSize()
 
     return (
         <section className='w-full h-screen relative'>
@@ -55,16 +55,16 @@ const Home = () => {
                 camera={{near: 0.1, far: 1000}}>
                 
                 <Suspense fallback={<Loader />}>
-                    <directionalLight position={[1, 1, 1]} intensity={2}/>
-                    <ambientLight intensity={0.5}/>
+                    <directionalLight position={[1, 1, 1]} intensity={1}/>
+                    <ambientLight intensity={0.2}/>
                     {/* <pointLight /> */}
                     {/* <spotLight /> */}
                     <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1}/>
                     <Bird />
-                    <Plane 
-                        scale={planeScale}
-                        position={planePosition}
-                        rotation={[0, 20, 0]}
+                    <Bee 
+                        scale={beeScale}
+                        position={beePosition}
+                        rotation={[0, 19.5, 0]}
                         isRotating={isRotating}
                     />
                     <Sky
